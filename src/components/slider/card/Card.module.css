@@ -1,0 +1,12 @@
+.div{
+  box-sizing: content-box;
+  height: 240px;
+  width: 192px;
+  border-radius: 20px;
+  outline: 3px solid  #FF6900;
+  outline-offset: 3px;
+
+}
+.container{
+  padding: 10px;
+}

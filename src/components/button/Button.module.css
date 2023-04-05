@@ -1,0 +1,24 @@
+.wrapper {
+  height: 40px;
+	padding: 8px 20px;
+	text-align: center;
+	background: rgb(255, 105, 0);
+	border: none;
+	color: #fff;
+	border-radius: 40px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.secondary {
+  background: rgb(255, 240 , 230);
+  color: rgb(209, 87, 0);
+} 
+.disapled{
+  background: rgb(226, 226, 223);
+  cursor: not-allowed;
+  color: rgb(171, 173, 186);
+}
+.wrapper:hover{
+  opacity: 0.8;
+}
