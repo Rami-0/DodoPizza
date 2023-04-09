@@ -1,9 +1,10 @@
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 import Slider from "./../../components/slider/Slider";
 import css from "./HomePage.module.css";
 import PizzaCard from "./../../components/PizzaCard/PizzaCard";
 import { base_url } from "../../constants/api_const";
 import LoadingBar from "react-top-loading-bar";
+import axios from "axios";
 
 const HomePage = () => {
 	const [pizzas, setPizzas] = useState([]);
@@ -14,12 +15,20 @@ const HomePage = () => {
 		setTimeout(() => {
 			setProgress(60);
 		}, 350);
-		fetch(base_url + "pizza")
-			.then((res) => res.json())
-			.then((data) => setPizzas(data))
+
+		axios
+			.get(base_url + "pizza")
+			.then((res) => setPizzas(res.data))
 			.finally(() => {
 				setProgress(100);
 			});
+
+		// fetch(base_url + "pizza")
+		// 	.then((res) => res.json())
+		// 	.then((data) => setPizzas(data))
+		// 	.finally(() => {
+		// 		setProgress(100);
+		// 	});
 	}, []);
 
 	return (
@@ -38,7 +47,7 @@ const HomePage = () => {
 
 			<section className="container">
 				<div className="title">Пицца</div>
-				<div className={'pizzasWrapper'}>
+				<div className={"pizzasWrapper"}>
 					{pizzas.map((item) => (
 						<PizzaCard key={item.id} {...item} />
 					))}

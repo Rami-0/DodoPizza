@@ -3,6 +3,7 @@ import Button from "./../../components/button/Button";
 import { base_url } from "../../constants/api_const";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 function CreatePizzaPage() {
 	const [name, setName] = useState("");
 	const [price, setPrice] = useState();
@@ -15,17 +16,25 @@ function CreatePizzaPage() {
 		e.preventDefault();
 		setSending(true);
 		const id = Date.now();
-		fetch(base_url + "pizza", {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({
-				img: img,
-				price: price,
-				name: name,
-				description: description,
-				id: id,
-			}),
-		}).finally(()=>{
+		axios.post(base_url + "pizza" , {
+			img: img,
+			price: price,
+			name: name,
+			description: description,
+			id: id,
+		})
+		// fetch(base_url + "pizza", {
+		// 	method: "POST",
+		// 	headers: { "Content-Type": "application/json" },
+		// 	body: JSON.stringify({
+		// 		img: img,
+		// 		price: price,
+		// 		name: name,
+		// 		description: description,
+		// 		id: id,
+		// 	}),
+		// })
+		.finally(()=>{
       setSending(false)
     }).then((res) => {
       if(res.status === 201){
@@ -35,7 +44,7 @@ function CreatePizzaPage() {
 	};
 	return (
 		
-		<div className={css.wrapper}>
+		<div className={css.wrapper + " container"}>
 			<h1>Создать</h1>
 			<form className="container" onSubmit={submit}>
 				<label>

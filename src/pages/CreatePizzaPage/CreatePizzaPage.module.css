@@ -2,17 +2,20 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction: column;
 	width: 100;
 	height: 60%;
+	text-align: center;
 }
-
 .wrapper > form {
 	display: flex;
 	flex-wrap: wrap;
 	width: 100%;
+	text-align: start;
+	justify-content: space-around;
 }
 .wrapper > form > label {
-	width: 50%;
+	width: calc(50% - 20px);
 }
 .wrapper > form > label > div {
 	font-size: 20px;
@@ -21,7 +24,7 @@
 }
 .wrapper > form label input,
 .wrapper > form label textarea {
-	width: calc(100% - 20px);
+	width: calc(100%);
 	margin-bottom: 18px;
 	color: black;
 	height: 35px;
@@ -38,4 +41,7 @@
 .wrapper > form input::placeholder,
 .wrapper > form textarea::placeholder {
 	color: black;
+}
+.wrapper > form > button {
+	align-self: start;
 }
