@@ -5,6 +5,7 @@ import PizzaCard from "./../../components/PizzaCard/PizzaCard";
 import { base_url } from "../../constants/api_const";
 import LoadingBar from "react-top-loading-bar";
 import axios from "axios";
+import OftenOrdered from './../../components/oftenOrderd/OftenOrdered';
 
 const HomePage = () => {
 	const [pizzas, setPizzas] = useState([]);
@@ -40,6 +41,7 @@ const HomePage = () => {
 			/>
 
 			<Slider />
+			<OftenOrdered/>
 			<br />
 			<br />
 			<br />

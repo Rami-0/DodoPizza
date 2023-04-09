@@ -44,14 +44,14 @@ const Header = () => {
 					<Link className={css.anchorLinks} to="/">
 						Пицца
 					</Link>
-					{/* <AnchorLink id="Комбо" />
+					<AnchorLink id="Комбо" />
 					<AnchorLink id="Закуски" />
-					<AnchorLink id="Десерты" /> */}
+					<AnchorLink id="Десерты" />
 					<Link className={css.anchorLinks} to="/drinks">
 						Напитки
 					</Link>
-					{/* <AnchorLink id="Другие товары" />
-					<AnchorLink id="Акции" /> */}
+					<AnchorLink id="Другие товары" />
+					<AnchorLink id="Акции" />
 					<Link className={css.anchorLinks} to="/contacts">
 						Контакты
 					</Link>
