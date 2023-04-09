@@ -1,4 +1,7 @@
-.container{
+.App {
+  min-height: 100vh;
+  height: 100vh;
+}.container{
   margin: 0 8%;
 }
 .title{

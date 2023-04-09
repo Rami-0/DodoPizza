@@ -7,7 +7,7 @@ const Button = ({ title, variant, ...props }) => {
 			{...props}
 			className={`${css.wrapper}
     ${variant === "secondary" ? css.secondary : ""}
-    ${variant === "disapled" ? css.disapled : ""}
+    ${variant === "disabled" ? css.disapled : ""}
     `}>
 			{title}
 		</button>
