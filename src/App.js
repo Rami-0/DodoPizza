@@ -11,6 +11,7 @@ import CreatePizzaPage from "./pages/CreatePizzaPage/CreatePizzaPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import { useState, useEffect } from "react";
 import ProtectedRoute from "./components/routes/ProtectedRoute";
+import Footer from './components/footer/Footer';
 
 const authLocal = JSON.parse(localStorage.getItem("auth"));
 
@@ -33,6 +34,7 @@ function App() {
 				</Route>
 				<Route path="*" element={<NotFoundPage />} />
 			</Routes>
+			<Footer/>
 		</div>
 	);
 }

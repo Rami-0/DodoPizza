@@ -4,8 +4,33 @@ import logo from "../../assets/logo.png";
 import AnchorLink from "./../anchorLink/AnchorLink";
 import { Link } from "react-router-dom";
 import Button from "./../button/Button";
+import { useState, useEffect } from "react";
+import Modal from "../modal/Modal";
+import { useDispatch, useSelector } from "react-redux";
+import { decremented, incremented } from "../../redux";
 
 const Header = () => {
+	const [isModal, setModal] = useState(false);
+
+	const num = useSelector((state) => state.counter.value);
+	const dispatch = useDispatch();
+
+	const handelMinus = () => {
+		dispatch(decremented());
+	};
+	const handelPluse = () => {
+		dispatch(incremented());
+	};
+	useEffect(() => {
+		if (isModal) {
+			document.body.style.height = "100vh";
+			document.body.style.overflow = "hidden";
+		} else {
+			document.body.style.height = "auto";
+			document.body.style.overflow = "visible";
+		}
+	}, [isModal]);
+
 	return (
 		<div className={css.wrapper + " container"}>
 			<header className={css.header}>
@@ -13,6 +38,9 @@ const Header = () => {
 					<Link to="/">
 						<img height={45} src={logo} alt="Logo Dodo pizza" />
 					</Link>
+					{/* <button onClick={handelMinus}>minus</button>
+					{num}
+					<button onClick={handelPluse}>pluse</button> */}
 					<div>
 						<h4>Доставка пиццы Бишкек</h4>
 						<p>33 мин . 4.7</p>
@@ -59,7 +87,10 @@ const Header = () => {
 						О нас
 					</Link>
 				</div>
-				<Button title={"Корзина"} />
+				<Button title={"Корзина"} onClick={() => setModal(!isModal)} />
+				{isModal ? (
+					<Modal isModal={isModal} setModal={setModal} />
+				) : null}
 			</nav>
 			{/* <Button title={"В корзину"} variant={"secondary"}/>
         <Button title={"Корзина"} variant={"disapled"}/> */}

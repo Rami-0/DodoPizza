@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import PizzaCard from "./../../components/PizzaCard/PizzaCard";
-import { base_url } from "../../constants/api_const";
 import LoadingBar from "react-top-loading-bar";
 import Button from "../../components/button/Button";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { getPizzas } from "../../components/api/Api";
 
 function AdminPage({ setAuth }) {
 	const [pizzas, setPizzas] = useState([]);
@@ -17,8 +16,9 @@ function AdminPage({ setAuth }) {
 			setProgress(60);
 		}, 350);
 
-		axios
-			.get(base_url + "pizza")
+		// axios
+		// 	.get(base_url + "pizza")
+		getPizzas()
 			.then((res) => setPizzas(res.data))
 			.finally(() => {
 				setProgress(100);
@@ -43,7 +43,7 @@ function AdminPage({ setAuth }) {
 				<Link to="/create-pizza">
 					<Button title="+ Добавить пиццу" />
 				</Link>
-        <Button title={"logout"} onClick={() => setAuth(false)}></Button>
+				<Button title={"logout"} onClick={() => setAuth(false)}></Button>
 				<div className="title">Пицца</div>
 				<div className={"pizzasWrapper"}>
 					{pizzas.map((item) => (

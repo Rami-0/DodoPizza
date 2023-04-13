@@ -2,10 +2,9 @@ import { useState, useEffect } from "react";
 import Slider from "./../../components/slider/Slider";
 import css from "./HomePage.module.css";
 import PizzaCard from "./../../components/PizzaCard/PizzaCard";
-import { base_url } from "../../constants/api_const";
 import LoadingBar from "react-top-loading-bar";
-import axios from "axios";
-import OftenOrdered from './../../components/oftenOrderd/OftenOrdered';
+import OftenOrdered from "./../../components/oftenOrderd/OftenOrdered";
+import { getPizzas } from "../../components/api/Api";
 
 const HomePage = () => {
 	const [pizzas, setPizzas] = useState([]);
@@ -17,8 +16,9 @@ const HomePage = () => {
 			setProgress(60);
 		}, 350);
 
-		axios
-			.get(base_url + "pizza")
+		// axios
+		// 	.get(base_url + "pizza")
+		getPizzas()
 			.then((res) => setPizzas(res.data))
 			.finally(() => {
 				setProgress(100);
@@ -41,7 +41,7 @@ const HomePage = () => {
 			/>
 
 			<Slider />
-			<OftenOrdered/>
+			<OftenOrdered />
 			<br />
 			<br />
 			<br />
