@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import Button from "./../../components/button/Button";
+import { useDispatch } from "react-redux";
+import { setAuth } from "../../redux";
 
-const LoginPage = ( { setAuth }) => {
+const LoginPage = () => {
 	const [login, setLogin] = useState("");
 	const [password, setPassword] = useState("");
+	const dispatch = useDispatch();
 	const submit = (e) => {
 		e.preventDefault();
-
-    if(login ==="admin" && password ==="admin"){
-      setAuth(true)
-    }
-    else{
-      alert("логин или пароль неверный")
-    }
+		if (login === "admin" && password === "admin") {
+			dispatch (setAuth(true)) ; 
+		} else {
+			alert("логин или пароль неверный");
+		}
 	};
 	return (
 		<div className="container">

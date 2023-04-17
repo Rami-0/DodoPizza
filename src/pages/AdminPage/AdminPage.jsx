@@ -5,10 +5,13 @@ import LoadingBar from "react-top-loading-bar";
 import Button from "../../components/button/Button";
 import { Link } from "react-router-dom";
 import { getPizzas } from "../../components/api/Api";
+import { useDispatch } from "react-redux";
+import { setAuth } from "../../redux";
 
-function AdminPage({ setAuth }) {
+function AdminPage() {
 	const [pizzas, setPizzas] = useState([]);
 	const [progress, setProgress] = useState(0);
+	const dispatch = useDispatch() 
 
 	useEffect(() => {
 		setProgress(30);
@@ -43,7 +46,7 @@ function AdminPage({ setAuth }) {
 				<Link to="/create-pizza">
 					<Button title="+ Добавить пиццу" />
 				</Link>
-				<Button title={"logout"} onClick={() => setAuth(false)}></Button>
+				<Button title={"logout"} onClick={() => dispatch(setAuth(false))}></Button>
 				<div className="title">Пицца</div>
 				<div className={"pizzasWrapper"}>
 					{pizzas.map((item) => (

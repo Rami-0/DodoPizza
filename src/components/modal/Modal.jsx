@@ -1,33 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import css from "./Modal.module.css";
 import ModalHeader from "./components/ModalHeader";
 import ModalCard from "./components/ModalCard";
 import ModalResualt from "./components/ModalResualt";
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 function Modal({ setModal, isModal }) {
+	const [isOpened, Open] = useState(false);
+	const open = () => setTimeout(() => Open(true), 1);
+	const handleClose = () => {
+		Open(false)
+		setTimeout(() => {
+			setModal(!isModal);
+		}, 300);
+	};
+
+	useEffect(() => {
+		open();
+	},[]);
 	const arr = useSelector((state) => state.basket.data);
 
 	return (
-		<div onClick={() => setModal(false)} className={css.wrapper}>
+		<div datatype={`${isOpened}`} onClick={handleClose} className={css.wrapper}>
 			<div
 				onClick={(e) => e.stopPropagation()}
-				className={css.modal}
+				className={`${css.modal}`}
+				datatype={`${isOpened}`}
 				id={arr.length !== 0 ? "" : css.empty}>
 				{arr.length !== 0 ? (
 					<>
 						<ModalHeader />
 						<div>
-							{arr.map((elem) => {
-								return <ModalCard key={new Date().getTime()} elem={elem} />;
+							{arr?.map((elem) => {
+								return <ModalCard key={elem.id} elem={elem} />;
 							})}
 						</div>
 						<ModalResualt />
 
 						<button
 							className={`${css.closeButton} ${!isModal ? css.hideButton : ""}`}
-							onClick={() => setModal(!isModal)}>
+							onClick={handleClose}>
 							<svg width="25" height="25" viewBox="0 0 25 25" fill="none">
 								<path
 									fillRule="evenodd"
@@ -51,7 +63,7 @@ function Modal({ setModal, isModal }) {
 
 						<button
 							className={`${css.closeButton} ${!isModal ? css.hideButton : ""}`}
-							onClick={() => setModal(!isModal)}>
+							onClick={handleClose}>
 							<svg width="25" height="25" viewBox="0 0 25 25" fill="none">
 								<path
 									fillRule="evenodd"

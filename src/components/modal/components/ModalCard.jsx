@@ -2,9 +2,10 @@ import React from "react";
 import css from "../Modal.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteFromBasket } from "../../../redux";
+import CounterButton from "./../../counterButton/CounterButton";
 
 const ModalCard = ({ elem }) => {
-	const { img, name, description, price, id } = elem;
+	let { img, name, description, price, id } = elem;
 	const amount = useSelector(
 		(state) =>
 			state.basket.data[state.basket.data.findIndex((item) => item.id === id)]
@@ -13,7 +14,7 @@ const ModalCard = ({ elem }) => {
 	const dispatch = useDispatch();
 
 	const deleteAll = () => {
-			dispatch(deleteFromBasket(id));
+		dispatch(deleteFromBasket(id));
 	};
 
 	return (
@@ -41,6 +42,7 @@ const ModalCard = ({ elem }) => {
 
 			<div className={css.cardBottom}>
 				<p>{price} сом</p>
+				<CounterButton id={id} />
 
 				{/* <CountButton variant='small' amount={elem.amount} id={elem.id} deleteAll={deleteAll} /> */}
 			</div>

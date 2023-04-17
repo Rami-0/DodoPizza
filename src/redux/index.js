@@ -1,38 +1,26 @@
-import { createSlice, configureStore, combineReducers } from "@reduxjs/toolkit";
+import { configureStore, combineReducers} from "@reduxjs/toolkit";
 import { basketSlice } from "./BasketSlice";
-
-
-const counterSlice = createSlice({
-  name: "counter",
-  initialState: {
-    value: 0,
-  },
-  reducers: {
-    incremented: (state) => {
-      state.value += 1;
-    },
-    decremented: (state) => {
-      state.value -= 1;
-    },
-  },
-});
-
-export const incremented = counterSlice.actions.incremented
-export const decremented = counterSlice.actions.decremented
-
-window.plus = counterSlice.actions.incremented
-window.minus = counterSlice.actions.decremented
-
-
+import { counterSlice } from "./CounterSlice";
+import { AuthSlice } from "./AuthSlice";
 
 const reducers = combineReducers({
-  counter:counterSlice.reducer,
-  basket:basketSlice.reducer
-})
+	counter: counterSlice.reducer,
+	basket: basketSlice.reducer,
+	Auth: AuthSlice.reducer,
+});
 export const store = configureStore({
-  reducer: reducers
+	reducer: reducers,
 });
 
-export const { addToBasket, deleteFromBasket, increase, decrease } = basketSlice.actions
+export const { addToBasket, deleteFromBasket, increase, decrease , GetTotalAmount } = basketSlice.actions;
+export const { decremented, incremented } = counterSlice.actions;
+export const { setAuth } = AuthSlice.actions;
 
-window.store = store
+window.plus = counterSlice.actions.incremented;
+window.minus = counterSlice.actions.decremented;
+
+store.subscribe(()=>{ 
+	const state = store.getState()
+	localStorage.setItem("auth", state.Auth.isAuth);
+
+})

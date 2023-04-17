@@ -1,24 +1,78 @@
 .wrapper {
-  height: 40px;
+	height: 40px;
 	padding: 8px 20px;
 	text-align: center;
 	background: rgb(255, 105, 0);
 	border: none;
 	color: #fff;
 	border-radius: 40px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.4s;
+	font-size: 16px;
+	cursor: pointer;
+	transition: 0.4s;
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	position: relative;
 }
-.secondary {
-  background: rgb(255, 240 , 230);
-  color: rgb(209, 87, 0);
-} 
-.disapled{
-  background: rgb(226, 226, 223);
-  cursor: not-allowed;
-  color: rgb(171, 173, 186);
+.wrapper:hover {
+  background: rgb(216, 90, 0);
 }
-.wrapper:hover{
-  opacity: 0.8;
+.wrapper:active {
+	color: rgba(255, 255, 255, 0.3);
+}
+
+.wrapper[datatype="forAdd"] {
+	background-color: rgb(255, 240, 230);
+	color: rgb(209, 87, 0);
+}
+.wrapper[datatype="forAdd"]:hover {
+	background-color: rgb(255, 177, 121);
+}
+.wrapper[datatype="disapled"] {
+	background: rgb(226, 226, 223);
+	cursor: not-allowed;
+	color: rgb(171, 173, 186);
+}
+
+.wrapper[datatype="disapled"]:hover {
+	opacity: 1;
+}
+.wrapper[datatype="forLogin"] {
+	background-color: rgb(243, 243, 247);
+	color: rgb(87, 92, 99);
+	height: 32px;
+	padding: 8px 16px;
+	font-size: 14px;
+	line-height: 16px;
+  transition: 0.3s;
+}
+
+.wrapper[datatype="forLogin"]:hover {
+	color: black;
+}
+
+.wrapper hr {
+	width: 1px;
+	height: 90%;
+	background-color: rgba(255, 255, 255, 0.5);
+	border: none;
+}
+
+.arrow {
+	position: absolute;
+	right: 25%;
+	cursor: pointer;
+	transition: 0.3s;
+	opacity: 0;
+}
+.amount {
+	transition: 0.3s;
+}
+.arrow[datatype="hover"] {
+	transform: translateX(15px);
+	opacity: 1;
+}
+.amount[datatype="hover"] {
+	transform: scale(0);
+	opacity: 0;
 }

@@ -30,7 +30,7 @@ a {
 	border-radius: 4px;
 	cursor: pointer;
   background-color: rgb(255, 240, 230);
-	width: 8px !important;
+	width: 4px !important;
   overflow-x: hidden;
 }
 *::-webkit-scrollbar-thumb{

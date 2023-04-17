@@ -13,14 +13,8 @@ import { useState, useEffect } from "react";
 import ProtectedRoute from "./components/routes/ProtectedRoute";
 import Footer from './components/footer/Footer';
 
-const authLocal = JSON.parse(localStorage.getItem("auth"));
 
 function App() {
-	const [auth, setAuth] = useState(authLocal);
-	useEffect(() => {
-		localStorage.setItem("auth", auth);
-	});
-
 	return (
 		<div className="App">
 			<Header />
@@ -28,8 +22,8 @@ function App() {
 				<Route path="/" element={<HomePage />} />
 				<Route path="/contacts" element={<ContactPage />} />
 				<Route path="/aboutus" element={<AboutUsPage />} />
-				<Route element={<ProtectedRoute auth={auth} setAuth={setAuth} />}>
-					<Route path="/admin" element={<AdminPage setAuth={setAuth}/>} />
+				<Route element={<ProtectedRoute />}>
+					<Route path="/admin" element={<AdminPage/>} />
 					<Route path="/create-pizza" element={<CreatePizzaPage />} />
 				</Route>
 				<Route path="*" element={<NotFoundPage />} />

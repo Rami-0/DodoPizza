@@ -41,7 +41,7 @@ function PizzaCard({ id, name, img, description, price, isAdmin }) {
 				{isAdmin ? (
 					<Button title={"Удалить"} onClick={handleDelete} />
 				) : (
-					<Button title={"В корзину"} onClick={handelAddToBasket} />
+					<Button title={"В корзину"} variant={'forAdd'} onClick={handelAddToBasket} />
 				)}
 			</div>
 		</div>
