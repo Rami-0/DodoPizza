@@ -1,31 +1,20 @@
 import Button from "../button/Button";
 import css from "./PizzaCard.module.css";
-import { deletePizza } from "../api/Api";
 import { useDispatch, useSelector } from "react-redux";
 import { addToBasket } from "../../redux";
+import { fetchDeletePizza } from "../../redux/PizzaSlice";
 
 function PizzaCard({ id, name, img, description, price, isAdmin }) {
+	const dispatch = useDispatch();
+
 	const handleDelete = () => {
 		const res = window.confirm("Вы действительно хотите удалить " + name + "?");
 		if (res) {
-			// axios.delete(base_url + "pizza/" + id)
-			deletePizza(id).then(() => {
-				window.location.reload();
-			});
-			// fetch(base_url + "pizza/" + id, {
-			// 	method: "DELETE",
-			// }).then(() => {
-			// 	window.location.reload();
-			// });
+			dispatch(fetchDeletePizza(id));
 		}
 	};
 
-	const dispatch = useDispatch();
-	
 	const handelAddToBasket = () => {
-		// if (totalAmount === 20) {
-		// 	return;
-		// }
 		dispatch(addToBasket({ id, name, img, description, price, amount: 1 }));
 	};
 
@@ -41,7 +30,11 @@ function PizzaCard({ id, name, img, description, price, isAdmin }) {
 				{isAdmin ? (
 					<Button title={"Удалить"} onClick={handleDelete} />
 				) : (
-					<Button title={"В корзину"} variant={'forAdd'} onClick={handelAddToBasket} />
+					<Button
+						title={"В корзину"}
+						variant={"forAdd"}
+						onClick={handelAddToBasket}
+					/>
 				)}
 			</div>
 		</div>

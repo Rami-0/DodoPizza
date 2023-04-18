@@ -1,19 +1,31 @@
 import css from "./CreatePizzaPage.module.css";
 import Button from "./../../components/button/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createPizza } from "../../components/api/Api";
+import { createPizza } from "../../api/Api";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCreatePizza } from "../../redux/PizzaSlice";
+import { backtoInitial } from "../../redux";
+
+
 function CreatePizzaPage() {
 	const [name, setName] = useState("");
 	const [price, setPrice] = useState();
 	const [img, setImg] = useState("");
 	const [description, setDescription] = useState("");
-	const [isSending, setSending] = useState(false);
+	const isCreating = useSelector((state) => state.Pizza.isCreating);
 
-  const navigate = useNavigate()
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	useEffect(() => {
+		if (isCreating === "success") {
+			navigate("/admin");
+			dispatch(backtoInitial())
+		}
+	}, [isCreating]);
+
 	const submit = (e) => {
 		e.preventDefault();
-		setSending(true);
 		const id = Date.now();
 		const data = {
 			img: img,
@@ -21,29 +33,11 @@ function CreatePizzaPage() {
 			name: name,
 			description: description,
 			id: id,
-		}
-		createPizza(data)
-		.finally(()=>{
-			setSending(false)
-    }).then((res) => {
-			if(res.status === 201){
-				navigate("/admin")
-      }
-    })
+		};
+		dispatch(fetchCreatePizza(data));
 	};
-	// fetch(base_url + "pizza", {
-	// 	method: "POST",
-	// 	headers: { "Content-Type": "application/json" },
-	// 	body: JSON.stringify({
-	// 		img: img,
-	// 		price: price,
-	// 		name: name,
-	// 		description: description,
-	// 		id: id,
-	// 	}),
-	// })
+
 	return (
-		
 		<div className={css.wrapper + " container"}>
 			<h1>Создать</h1>
 			<form className="container" onSubmit={submit}>
@@ -96,9 +90,9 @@ function CreatePizzaPage() {
 				</label>
 
 				<Button
-					variant={isSending ? "disabled" : " "}
-					disabled={isSending}
-					title={isSending ? "Добавить..." : "Добавить"}
+					variant={isCreating === 'pending' ? "disapled" : " "}
+					disabled={isCreating === 'pending'}
+					title={isCreating === 'pending' ? "Добавить..." : "Добавить"}
 				/>
 			</form>
 		</div>

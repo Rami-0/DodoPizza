@@ -11,24 +11,32 @@ import CreatePizzaPage from "./pages/CreatePizzaPage/CreatePizzaPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import { useState, useEffect } from "react";
 import ProtectedRoute from "./components/routes/ProtectedRoute";
-import Footer from './components/footer/Footer';
-
+import Footer from "./components/footer/Footer";
+import Nav from "./components/header/Nav";
+import { useDispatch } from "react-redux";
+import { fetchPizzas } from "./redux/PizzaSlice";
 
 function App() {
+	const dispatch = useDispatch();
+	
+	useEffect(() => {
+		dispatch(fetchPizzas());
+	}, []);
+
 	return (
 		<div className="App">
 			<Header />
+			<Nav />
 			<Routes>
 				<Route path="/" element={<HomePage />} />
 				<Route path="/contacts" element={<ContactPage />} />
 				<Route path="/aboutus" element={<AboutUsPage />} />
 				<Route element={<ProtectedRoute />}>
-					<Route path="/admin" element={<AdminPage/>} />
+					<Route path="/admin" element={<AdminPage />} />
 					<Route path="/create-pizza" element={<CreatePizzaPage />} />
 				</Route>
 				<Route path="*" element={<NotFoundPage />} />
 			</Routes>
-			<Footer/>
 		</div>
 	);
 }

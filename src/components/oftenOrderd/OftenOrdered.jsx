@@ -7,7 +7,7 @@ import "swiper/css/free-mode";
 import css from "./OftenOrdered.module.css";
 import "./OftenOrdered.css";  
 
-const OftenOrderedSwiper = () => {
+const OftenOrdered = () => {
 
 	return (
 		<div className={`${css.wrapper} OftenOrderedSwiper`}>
@@ -24,8 +24,6 @@ const OftenOrderedSwiper = () => {
 				slidesPerView={5.5}
 				spaceBetween={30}
         mousewheel={true}
-
-
         >
         
 
@@ -88,4 +86,4 @@ const OftenOrderedSwiper = () => {
 	);
 };
 
-export default OftenOrderedSwiper;
+export default OftenOrdered;
