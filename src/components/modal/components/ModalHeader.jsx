@@ -2,12 +2,14 @@ import React from "react";
 import { useSelector } from "react-redux";
 import css from "../Modal.module.css";
 
-const ModalHeader = () => {
+const ModalHeader = ({ totalAmount }) => {
 	const arr = useSelector((state) => state.basket.data);
-	const total = Object.keys(arr).reduce(
-		(acc, crr) => [acc[0] + 1, acc[1] + arr[crr].price],
-		[0, 0]
-	);
+	const total = Object.keys(arr).reduce((acc, crr) => {
+		if(arr[crr].amount > 1){
+			return acc + arr[crr].price*arr[crr].amount
+		}
+		return acc + arr[crr].price;
+	}, 0);
 
 	const lastTwoDigits = total[0] % 100;
 	const lastDigit = total[0] % 10;
@@ -33,7 +35,7 @@ const ModalHeader = () => {
 		<section
 			style={{ padding: 0 + "px " + 16 + "px", flex: 0 + " 0" + " auto" }}>
 			<h1 className={css.header}>
-				{total[0]} {A} на {total[1]} сом
+				{totalAmount} {A} на {total} сом
 			</h1>
 		</section>
 	);

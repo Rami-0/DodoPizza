@@ -6,9 +6,12 @@ import Button from "./../button/Button";
 import Nav from "./Nav";
 import Modal from "../modal/Modal";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const Header = ({}) => {
 	const [isModal, setModal] = useState(false);
+	const basketData = useSelector((state) => state.basket.data)
+	const totalAmount = basketData.reduce((total, current) => total + current.amount,0)
 
 	return (
 		<>
@@ -64,8 +67,8 @@ const Header = ({}) => {
 					</div>
 				</header>
 			</div>
-			<Nav isModal={isModal} setModal={setModal} />
-			{isModal ? <Modal isModal={isModal} setModal={setModal} /> : null}
+			<Nav isModal={isModal} setModal={setModal} totalAmount={totalAmount} />
+			{isModal ? <Modal isModal={isModal} setModal={setModal} totalAmount={totalAmount}/> : null}
 		</>
 	);
 };

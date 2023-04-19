@@ -5,7 +5,7 @@ import ModalCard from "./components/ModalCard";
 import ModalResualt from "./components/ModalResualt";
 import { useSelector } from "react-redux";
 
-function Modal({ setModal, isModal }) {
+function Modal({ setModal, isModal ,totalAmount}) {
 	const [isOpened, Open] = useState(false);
 	const open = () => setTimeout(() => Open(true), 1);
 	const handleClose = () => {
@@ -29,7 +29,7 @@ function Modal({ setModal, isModal }) {
 				id={arr.length !== 0 ? "" : css.empty}>
 				{arr.length !== 0 ? (
 					<>
-						<ModalHeader />
+						<ModalHeader totalAmount={totalAmount} />
 						<div>
 							{arr?.map((elem) => {
 								return <ModalCard key={elem.id} elem={elem} />;

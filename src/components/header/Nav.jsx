@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useRef } from "react";
 
-const Nav = ({isModal , setModal}) => {
+const Nav = ({isModal , setModal, totalAmount}) => {
 	useEffect(() => {
 		if (isModal) {
 			document.body.style.height = "100vh";
@@ -90,7 +90,7 @@ const Nav = ({isModal , setModal}) => {
 				<div>
 					<Button
 						title={"Корзина"}
-						amount={0}
+						amount={totalAmount}
 						onClick={() => setModal(!isModal)}
 					/>
 				</div>
