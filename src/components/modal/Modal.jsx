@@ -17,11 +17,11 @@ function Modal({ setModal, isModal }) {
 
 	useEffect(() => {
 		open();
+		console.log(isOpened);
 	},[]);
 	const arr = useSelector((state) => state.basket.data);
-
 	return (
-		<div datatype={`${isOpened}`} onClick={handleClose} className={css.wrapper}>
+		<aside datatype={`${isOpened}`} onClick={handleClose} className={css.wrapper}>
 			<div
 				onClick={(e) => e.stopPropagation()}
 				className={`${css.modal}`}
@@ -75,7 +75,7 @@ function Modal({ setModal, isModal }) {
 					</>
 				)}
 			</div>
-		</div>
+		</aside>
 	);
 }
 

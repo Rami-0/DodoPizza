@@ -7,9 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useRef } from "react";
 
-const Nav = () => {
-	const [isModal, setModal] = useState(false);
-
+const Nav = ({isModal , setModal}) => {
 	useEffect(() => {
 		if (isModal) {
 			document.body.style.height = "100vh";
@@ -28,11 +26,11 @@ const Nav = () => {
 	}, [tagRef]);
 
 	return (
-		<div ref={tagRef} className={`${css.wrapper} ${isSticky ? css.show : ""}`}>
+		<div className={`${css.wrapper} ${isSticky ? css.show : ""}`}>
 			<nav className={css.nav}>
 				<div className={css.linksWrapper}>
 					<ul className={css.showTransform}>
-						<span className={css.icon }>
+						<span className={css.icon}>
 							<svg
 								id="logo_svg__Layer_1"
 								width={36}
@@ -89,14 +87,15 @@ const Nav = () => {
 						</li>
 					</ul>
 				</div>
-
+				<div>
 					<Button
 						title={"Корзина"}
 						amount={0}
 						onClick={() => setModal(!isModal)}
 					/>
+				</div>
 
-				{isModal ? <Modal isModal={isModal} setModal={setModal} /> : null}
+
 			</nav>
 			{/* <Button title={"В корзину"} variant={"secondary"}/>
     <Button title={"Корзина"} variant={"disapled"}/> */}

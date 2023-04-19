@@ -12,11 +12,15 @@ import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import { useState, useEffect } from "react";
 import ProtectedRoute from "./components/routes/ProtectedRoute";
 import Footer from "./components/footer/Footer";
-import Nav from "./components/header/Nav";
 import { useDispatch } from "react-redux";
 import { fetchPizzas } from "./redux/PizzaSlice";
+import Modal from './components/modal/Modal';
 
 function App() {
+
+
+
+
 	const dispatch = useDispatch();
 	
 	useEffect(() => {
@@ -26,7 +30,6 @@ function App() {
 	return (
 		<div className="App">
 			<Header />
-			<Nav />
 			<Routes>
 				<Route path="/" element={<HomePage />} />
 				<Route path="/contacts" element={<ContactPage />} />
