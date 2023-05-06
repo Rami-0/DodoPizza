@@ -11,7 +11,7 @@ function Footer() {
 	};
 
 	return (
-		<div className={`${css.wrapper}`}>
+		<div id="contact" className={`${css.wrapper}`}>
 			<div className={`${css.questionary}`}>
 				<div>
 					<svg

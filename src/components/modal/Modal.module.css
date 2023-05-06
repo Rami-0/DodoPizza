@@ -100,6 +100,9 @@ svg:not(:root) {
 	overflow-clip-margin: content-box;
 	overflow: hidden;
 }
+.cardsWrapper{
+	margin-bottom: 80px;
+}
 
 .card {
 	position: relative;
@@ -154,4 +157,29 @@ svg:not(:root) {
 	justify-content: space-between;
 	padding: 15px 0;
 	width: 100%;
+}
+
+.ModalResualt{
+	width: 430px;
+	background-color: #ffffff;
+	padding: 15px 20px;
+	align-self: flex-end;
+	bottom: 0;
+	right: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	position: absolute;
+	align-items: center;
+}
+.ModalResualt > .title{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	margin-bottom: 20px;
+}
+.ModalResualt > button{
+	width: 100%;
+	
 }

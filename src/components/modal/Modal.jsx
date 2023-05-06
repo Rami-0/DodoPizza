@@ -30,12 +30,12 @@ function Modal({ setModal, isModal ,totalAmount}) {
 				{arr.length !== 0 ? (
 					<>
 						<ModalHeader totalAmount={totalAmount} />
-						<div>
+						<div className={css.cardsWrapper}>
 							{arr?.map((elem) => {
 								return <ModalCard key={elem.id} elem={elem} />;
 							})}
 						</div>
-						<ModalResualt />
+						<ModalResualt amount={totalAmount} total={200} />
 
 						<button
 							className={`${css.closeButton} ${!isModal ? css.hideButton : ""}`}

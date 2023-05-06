@@ -20,7 +20,7 @@ const HomePage = () => {
 			<Slider />
 			<OftenOrdered />
 			<section className="container">
-				<div className="title">Пицца</div>
+				<div className="title" id="Pizzas">Пицца</div>
 				<div className={"pizzasWrapper"}>
 					{pizzas.map((item) => (
 						<PizzaCard key={item.id} {...item} />

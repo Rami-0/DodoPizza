@@ -123,8 +123,12 @@
 
 .icon {
 	align-items: center;
-	display: flex;
+	display: grid;
 	height: 90%;
+}
+.icon > svg > path, #svg{
+	-webkit-transform: translateX(-70px);
+	transform: translateX(-70px);
 }
 
 .show {
@@ -132,8 +136,13 @@
 }
 
 .showTransform {
-	-webkit-transform: translateX(0px) !important;
-	transform: translateX(0px) !important;
+	-webkit-transform: translateX(-0px) !important;
+	transform: translateX(-0px) !important;
+}
+
+#svg{
+	width: 50px;
+	display: none;
 }
 
 
