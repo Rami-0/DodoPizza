@@ -15,6 +15,7 @@ import Footer from "./components/footer/Footer";
 import { useDispatch } from "react-redux";
 import { fetchPizzas } from "./redux/PizzaSlice";
 import Modal from './components/modal/Modal';
+import PaymentPage from "./pages/PaymentPage/PaymentPage";
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
 					<Route path="/admin" element={<AdminPage />} />
 					<Route path="/create-pizza" element={<CreatePizzaPage />} />
 				</Route>
+				<Route exact path="/payment" element={<PaymentPage/>}/>
 				<Route path="*" element={<NotFoundPage />} />
 			</Routes>
 			<Footer />

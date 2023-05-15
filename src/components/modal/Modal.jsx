@@ -19,6 +19,7 @@ function Modal({ setModal, isModal ,totalAmount}) {
 		open();
 		console.log(isOpened);
 	},[]);
+	
 	const arr = useSelector((state) => state.basket.data);
 	return (
 		<aside datatype={`${isOpened}`} onClick={handleClose} className={css.wrapper}>
